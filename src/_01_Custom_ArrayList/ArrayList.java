@@ -31,15 +31,27 @@ public class ArrayList<T> {
 	}
 
 	public void remove(int loc) throws IndexOutOfBoundsException {
-		
-		for() {}
+		for(int i = loc; i <= size-1; i++) {
+			mann[i] = mann[i+1];
+		}	
+		mann[size] = null;
+		size--;
 	}
 	
-	size--;
+
 
 	public boolean contains(T val) {
-
+		for(int i = 0; i < size-1; i++) {
+			if(mann[i] == val) {
+				return true;
+			}
+		}
 		return false;
+	}
+	
+	public int size() {	
+		return size;
+		
 	}
 
 	public void ensureArray() {
