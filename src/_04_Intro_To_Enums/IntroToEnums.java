@@ -2,7 +2,7 @@ package _04_Intro_To_Enums;
 
 public class IntroToEnums {
 	// An enum (short for enumerated type) is a way to 
-	// categorize a set of states for one by one referencing 
+	// categorize a set of states for one by one referencing
 	
 	// The syntax for an enum is like this:
 	enum DataTypes {
