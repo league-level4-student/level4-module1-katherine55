@@ -160,18 +160,26 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//2. set the foodLocation variable equal to the Location object you just created.
 		foodLocation = bake;
 		//   use the snake's isLocationOnSnake method to make sure you don't put the food on the snake
-		$$$IM RIGHT HEREEEEE HIELLO$$$
+		if(snake.isLocationOnSnake(bake)) {
+			setFoodLocation();
+		}
 	}
 
 	private void gameOver() {
 		
 		//1. stop the timer
-		
+		timer.stop();
 		//2. tell the user their snake is dead
-		
+		System.out.println("You died |(");
 		//3. ask them if they want to play again.
-		
+		String ans = JOptionPane.showInputDialog("Play again? [Yes/No]");
 		//4. if they want to play again
+		if(ans.contains("no")) {
+			
+		}
+		else {
+			System.exit(0);
+		}
 		//   reset the snake and the food and start the timer
 		//   else, exit the game
 		
