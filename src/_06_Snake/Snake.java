@@ -25,7 +25,7 @@ public class Snake {
 
 	public void feed() {
 		// 1. add a new SnakeSegment object to the snake
-		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
+		snake.add(new SnakeSegment(snake.get(snake.size()-1).getLocation(), BODY_SIZE));
 	}
 
 	public Location getHeadLocation() {
@@ -34,8 +34,8 @@ public class Snake {
 	}
 
 	public void update() {
-		int headx=0;
-		int heady=0;
+		int headx=head.getLocation().x;
+		int heady=head.getLocation().y;
 		// 1. use a switch statement to check on the currentDirection
 		// of the snake and calculate its next x and y position.
 		switch (currentDirection) {
@@ -50,14 +50,14 @@ public class Snake {
 			headx = head.getLocation().x - 1;
 			break;
 		case RIGHT:
-			headx = head.getLocation().x - 1;
+			headx = head.getLocation().x + 1;
 			break;
 		}
 		// 2. Iterate through the SnakeSegments in reverse order
 		// 2a. Update each snake segment to the location of the segment
 		// in front of it.
-		for (int i = snake.size(); i > 0; i--) {
-			snake.set(i + 1, snake.get(i));
+		for (int i = snake.size()-1; i > 0; i--) {
+			snake.get(i).setLocation(new Location(snake.get(i-1).getLocation().x, snake.get(i-1).getLocation().y));
 		}
 		// 3. set the location of the head to the new location calculated in step 1
 		head.setLocation(new Location(headx, heady));
@@ -99,8 +99,8 @@ public class Snake {
 	public boolean isHeadCollidingWithBody() {
 		// 1. complete the method so it returns true if the head is located
 		// in the same location as any other body segment
-		for (int i = 1; i < snake.size(); i++) {
-			if (snake.get(i).getLocation() == head.getLocation()) {
+		for (int i = 1; i < snake.size()-1; i++) {
+			if (snake.get(i).getLocation().x == head.getLocation().x && snake.get(i).getLocation().y == head.getLocation().y) {
 				return true;
 			}
 		}
@@ -110,7 +110,7 @@ public class Snake {
 	public boolean isLocationOnSnake(Location loc) {
 		// 1. complete the method so it returns true if the passed in
 		// location is located on the snake
-		if (loc == head.getLocation()) {
+		if (loc.x == head.getLocation().x && loc.y == head.getLocation().y) {
 			return true;
 		}
 		return false;
